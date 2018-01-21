@@ -5,7 +5,7 @@
        http://www.springframework.org/schema/rabbit
        http://www.springframework.org/schema/rabbit/spring-rabbit-1.4.xsd">
     <beans>
-        <rabbit:connection-factory id="connectionFactory" host="localhost" username="usr" password="pwd"
+        <rabbit:connection-factory id="connectionFactory" host="localhost" username="usr" password="pwd" port="8080"
                                    channel-cache-size="5"/>
     </beans>
 </beans>
