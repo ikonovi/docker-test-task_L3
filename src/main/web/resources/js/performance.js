@@ -40,7 +40,7 @@ $(document).ready(function () {
     });
 });
 
-var UPDATE_INTERVAL = 1000;
+var UPDATE_INTERVAL = 60000;
 
 setInterval(function getStatus() {
     $.ajax({url: "status",

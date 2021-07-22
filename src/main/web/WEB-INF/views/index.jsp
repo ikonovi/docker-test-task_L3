@@ -9,6 +9,11 @@
             </div>
             <div class="panel-body">
                 <h6 class="panel-title">Greetings, traveller!</h6>
+                <c:if test="${not empty connectionStatus}">
+                    <h6>Connection Status: ${connectionStatus}</h6>
+                </c:if>
+            </div>
+            <div>
             </div>
         </div>
     </div>
