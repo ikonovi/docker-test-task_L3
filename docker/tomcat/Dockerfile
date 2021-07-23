@@ -7,8 +7,10 @@ RUN apk update \
     && rm -f /var/cache/apk/*
 
 WORKDIR /tmp
-RUN git clone https://github.com/ikonovi/docker-test-task_L3.git
+RUN rm -fR ./docker-test-task_L3 \
+    && git clone https://github.com/ikonovi/docker-test-task_L3.git
 
 WORKDIR /tmp/docker-test-task_L3
 RUN mvn clean package \
+    && rm -fR /usr/local/tomcat/webapps/docker-task-1.0.war \
     && cp ./target/docker-task-1.0.war /usr/local/tomcat/webapps/
