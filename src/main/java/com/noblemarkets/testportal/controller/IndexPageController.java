@@ -16,11 +16,11 @@ public class IndexPageController {
     private Connection conn;
 
     @GetMapping(value = "/")
-    public ModelAndView getIndexPageModelAndView() {
+    public ModelAndView getIndexPageModelAndView() throws Exception {
         ModelAndView modelAndView = new ModelAndView("index");
 
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("rabbitmqSrv"); // Default: localhost
+        factory.setHost("rabbitmq"); // Default: localhost
         factory.setPort(8080); // Default: 5672
         factory.setUsername("usr");
         factory.setPassword("pwd");
@@ -30,12 +30,8 @@ public class IndexPageController {
             modelAndView.addObject("connectionStatus", "It's opened successfully.");
             log.info("RabbitMQ connection is open");
         } catch (IOException | TimeoutException exception) {
-            String errorMessage = exception.getMessage();
-            if (exception.getCause() != null) {
-                errorMessage += " Cause: " + exception.getCause().getMessage();
-            }
-            modelAndView.addObject("connectionStatus", errorMessage);
             log.error("RabbitMQ connection failed", exception);
+            throw new Exception(exception);
         } finally {
             if(conn != null) {
                 try {
