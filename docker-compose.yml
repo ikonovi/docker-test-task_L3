@@ -4,7 +4,7 @@ services:
 
   tomcatSrv:
     depends_on:
-      - rabbitmq
+      - rabbitmqSrv
     image: tomcat:8.5.69-jdk8-corretto
     container_name: Tomcat
     ports:
@@ -16,7 +16,7 @@ services:
 
   rabbitmqSrv:
     build:
-      context: ./rabbitmq
+      context: https://github.com/ikonovi/docker-test-task_L3/rabbitmq
     container_name: RabbitMq
     ports:
       - 8080:5672
