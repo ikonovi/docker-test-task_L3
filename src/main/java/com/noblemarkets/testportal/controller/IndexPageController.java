@@ -20,7 +20,8 @@ public class IndexPageController {
         ModelAndView modelAndView = new ModelAndView("index");
 
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("rabbitmq"); // Default: localhost
+        // Name of service in docker-compose.yml ??
+        factory.setHost("localhost");
         factory.setPort(8080); // Default: 5672
         factory.setUsername("usr");
         factory.setPassword("pwd");

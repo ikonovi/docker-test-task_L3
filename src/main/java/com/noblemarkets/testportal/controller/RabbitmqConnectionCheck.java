@@ -12,8 +12,8 @@ public class RabbitmqConnectionCheck {
 
     public static void main(String[] args) {
         ConnectionFactory factory = new ConnectionFactory();
-        //factory.setPort(5672); // Default
-        factory.setPort(8080);
+        factory.setHost("localhost");
+        factory.setPort(8080); // Default: 5672
         factory.setUsername("usr");
         factory.setPassword("pwd");
         Connection conn = null;
