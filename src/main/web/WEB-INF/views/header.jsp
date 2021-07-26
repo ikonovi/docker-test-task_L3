@@ -9,4 +9,3 @@
     <link href="${pageContext.request.contextPath}/resources/css/custom.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="container main-container">
