@@ -7,8 +7,8 @@ services:
       context: ./docker/tomcat
     ports:
       - "8081:8080"
-    volumes:
-      - ./target/docker-task-1.0.war:/usr/local/tomcat/webapps/docker-task-1.0.war
+#    volumes:
+#      - ./target/docker-task-1.0.war:/usr/local/tomcat/webapps/docker-task-1.0.war
     networks:
       - rabbitmq_tomcat_net
 
@@ -18,6 +18,7 @@ services:
       - "5672:5672"
       - "15672:15672"
     volumes:
+# if comment would be removed, then definitions will be ignored. Why?
 #      - ./docker/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
       - ./docker/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
     hostname: my-rabbit
