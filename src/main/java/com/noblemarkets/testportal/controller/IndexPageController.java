@@ -20,7 +20,7 @@ public class IndexPageController {
         ModelAndView modelAndView = new ModelAndView("index");
 
         String hostname = "rabbitmq"; // "rabbitmq" - service name in docker-compose file
-        int port = 8080; // Default: 5672
+        int port = 5672; // Default: 5672
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(hostname);
         factory.setPort(port);

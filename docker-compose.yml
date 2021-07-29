@@ -15,11 +15,11 @@ services:
   rabbitmq:
     image: "rabbitmq:3.8.19-management-alpine"
     ports:
-      - "8080:8080"
+      - "5672:5672"
       - "15672:15672"
     volumes:
+#      - ./docker/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
       - ./docker/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
-      - ./docker/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
     hostname: my-rabbit
     networks:
       - rabbitmq_tomcat_net
