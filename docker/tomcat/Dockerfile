@@ -3,7 +3,7 @@ FROM tomcat:8.5-alpine
 RUN apk update \
     && apk add --no-cache openjdk8 \
     && apk add --no-cache maven \
-    && apk fetch git && apk add --no-cache git \
+    && apk add --no-cache git \
     && rm -f /var/cache/apk/*
 
 WORKDIR /tmp

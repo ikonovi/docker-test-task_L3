@@ -19,28 +19,30 @@ public class IndexPageController {
     public ModelAndView getIndexPageModelAndView() throws Exception {
         ModelAndView modelAndView = new ModelAndView("index");
 
+        String hostname = "rabbitmq"; // "rabbitmq" - service name in docker-compose file
+        int port = 8080; // Default: 5672
         ConnectionFactory factory = new ConnectionFactory();
-        // Name of service in docker-compose.yml ??
-        factory.setHost("rabbitmq");
-        factory.setPort(8080); // Default: 5672
+        factory.setHost(hostname);
+        factory.setPort(port);
         factory.setUsername("usr");
         factory.setPassword("pwd");
 
         try {
             this.conn = factory.newConnection();
             modelAndView.addObject("connectionStatus", "It's opened successfully.");
-            log.info("RabbitMQ connection is open");
+            log.info("Connected to RabbitMQ at " + hostname + ":" + port);
         } catch (IOException | TimeoutException exception) {
-            log.error("RabbitMQ connection failed", exception);
+            log.error("Could not connect at " + hostname + ":" + port, exception);
             throw new Exception(exception);
         } finally {
             if(conn != null) {
                 try {
                     if (conn.isOpen()){
+                        log.info("Connection is closed.");
                         this.conn.close();
                     }
                 } catch (IOException exception) {
-                    //do nothing
+                    log.error("Could not close connecting at " + hostname + ":" + port, exception);
                 }
             }
         }

@@ -6,18 +6,21 @@ services:
     build:
       context: ./docker/tomcat
     ports:
-      - 8081:8080
-#    volumes:
-#      - ./target/docker-task-1.0.war:/usr/local/tomcat/webapps/docker-task-1.0.war
+      - "8081:8080"
+    volumes:
+      - ./target/docker-task-1.0.war:/usr/local/tomcat/webapps/docker-task-1.0.war
     networks:
       - rabbitmq_tomcat_net
 
   rabbitmq:
-    build:
-      context: ./docker/rabbitmq
+    image: "rabbitmq:3.8.19-management-alpine"
     ports:
-      - 8080:5672
-      - 15672:15672
+      - "8080:8080"
+      - "15672:15672"
+    volumes:
+      - ./docker/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
+      - ./docker/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+    hostname: my-rabbit
     networks:
       - rabbitmq_tomcat_net
 
